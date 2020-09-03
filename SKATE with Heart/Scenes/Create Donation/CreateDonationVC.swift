@@ -4,6 +4,8 @@ class CreateDonationVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Create Donation"
+        view.backgroundColor = .white
     }
 }

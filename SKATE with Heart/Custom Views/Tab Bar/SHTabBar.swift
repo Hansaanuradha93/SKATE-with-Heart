@@ -5,7 +5,7 @@ class SHTabBar: UITabBarController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().tintColor = .blue
+        UITabBar.appearance().tintColor = UIColor.appColor(color: .pink)
         viewControllers = [createDonationNC(), donationListNC()]
     }
 }
