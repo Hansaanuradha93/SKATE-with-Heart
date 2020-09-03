@@ -45,12 +45,26 @@ class LoginVC: UIViewController {
     
     
     @objc fileprivate func handleLogin() {
-        print(123)
+        loginViewModel.performLogin { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.presentAlert(title: "Login Failed!", message: error.localizedDescription, buttonTitle: "OK")
+                return
+            }
+            self.navigateToHome()
+        }
     }
     
     
     @objc fileprivate func handleGoToSignup() {
         let controller = SignupVC()
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
+    }
+    
+    
+    fileprivate func navigateToHome() {
+        let controller = SHTabBar()
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }
@@ -69,9 +83,9 @@ class LoginVC: UIViewController {
             self.loginButton.isEnabled = isFormValid
         }
         
-        loginViewModel.bindableIsRegistering.bind { [weak self] isRegistering in
-            guard let self = self, let isRegistering = isRegistering else { return }
-            if isRegistering {
+        loginViewModel.bindableIsLogin.bind { [weak self] isLogin in
+            guard let self = self, let isLogin = isLogin else { return }
+            if isLogin {
                 self.showPreloader()
             } else {
                 self.hidePreloader()

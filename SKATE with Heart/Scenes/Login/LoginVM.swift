@@ -9,12 +9,27 @@ class LoginVM {
     
     // MARK: Bindlable
     var bindalbeIsFormValid = Bindable<Bool>()
-    var bindableIsRegistering = Bindable<Bool>()
+    var bindableIsLogin = Bindable<Bool>()
 }
 
 
 // MARK: - Methods
 extension LoginVM {
+    
+    func performLogin(completion: @escaping (Error?) -> ()) {
+        guard let email = email, let password = password else { return }
+        bindableIsLogin.value = true
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] response, error in
+            guard let self = self else { return }
+            self.bindableIsLogin.value = false
+            if let error = error {
+                completion(error)
+                return
+            }
+            print("Logged in successfully")
+            completion(nil)
+        }
+    }
     
     
     func checkFormValidity() {

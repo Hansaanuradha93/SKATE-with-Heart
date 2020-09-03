@@ -68,7 +68,6 @@ extension SignupVC {
                 self.presentAlert(title: "Signup Failed!", message: error.localizedDescription, buttonTitle: "OK")
                 return
             }
-            print("Yup, its working")
             self.navigateToHome()
         }
     }
