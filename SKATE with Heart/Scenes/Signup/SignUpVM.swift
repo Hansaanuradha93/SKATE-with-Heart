@@ -8,6 +8,7 @@ class SignUpVM {
     var email: String? { didSet { checkFormValidity() } }
     var password: String? { didSet { checkFormValidity() } }
     
+    
     // MARK: Bindlable
     var bindalbeIsFormValid = Bindable<Bool>()
     var bindableIsRegistering = Bindable<Bool>()
