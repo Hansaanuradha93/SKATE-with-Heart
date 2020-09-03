@@ -74,6 +74,11 @@ extension SignupVC {
     }
     
     
+    @objc fileprivate func handleGoToLogin() {
+        self.dismiss(animated: true)
+    }
+    
+    
     @objc fileprivate func handleKeyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.transform = .identity
@@ -136,7 +141,7 @@ extension SignupVC {
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-    //       goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
     }
     
     

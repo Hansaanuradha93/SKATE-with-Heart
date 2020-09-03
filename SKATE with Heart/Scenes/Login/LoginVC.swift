@@ -44,6 +44,18 @@ class LoginVC: UIViewController {
     }
     
     
+    @objc fileprivate func handleLogin() {
+        print(123)
+    }
+    
+    
+    @objc fileprivate func handleGoToSignup() {
+        let controller = SignupVC()
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
+    }
+    
+    
     fileprivate func setupLoginViewModelObserver() {
         loginViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
@@ -79,8 +91,8 @@ class LoginVC: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-//        loginButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-//        goToSignupButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        goToSignupButton.addTarget(self, action: #selector(handleGoToSignup), for: .touchUpInside)
     }
     
     
