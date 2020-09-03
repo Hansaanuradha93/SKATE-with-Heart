@@ -34,7 +34,7 @@ class SignupVC: UIViewController {
         gradientLayer.frame = view.bounds
     }
     
-    @objc fileprivate func handleTap() {
+    @objc fileprivate func handleTapDismiss() {
         view.endEditing(true)
     }
     
@@ -43,6 +43,20 @@ class SignupVC: UIViewController {
         signupViewModel.fullName = fullNameTextField.text
         signupViewModel.email = emailTextField.text
         signupViewModel.password = passwordTextField.text
+    }
+    
+    
+    @objc fileprivate func handleSignUp() {
+        handleTapDismiss()
+        signupViewModel.performSignUp { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.presentAlert(title: "Signup Failed!", message: error.localizedDescription, buttonTitle: "OK")
+                return
+            }
+            print("Yup, its working")
+//            self.navigateToHome()
+        }
     }
     
     
@@ -71,10 +85,11 @@ class SignupVC: UIViewController {
     
     
     fileprivate func addTargets() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-//        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
 //        goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
     }
     
@@ -87,8 +102,8 @@ class SignupVC: UIViewController {
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.isHidden = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         
+        fullNameTextField.autocorrectionType = .no
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
