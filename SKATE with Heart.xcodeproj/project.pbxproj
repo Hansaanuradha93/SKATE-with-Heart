@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,10 @@
 		47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA62500AB0D00D2B91F /* DonationListVC.swift */; };
 		47801BAA2500AE2200D2B91F /* SHTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA92500AE2200D2B91F /* SHTabBar.swift */; };
 		47801BAC2500B87600D2B91F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47801BAB2500B87600D2B91F /* GoogleService-Info.plist */; };
+		47A1EDBA2500BED900FE41C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDB92500BED900FE41C6 /* User.swift */; };
+		47A1EDBD2500C72300FE41C6 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDBC2500C72300FE41C6 /* SignupVC.swift */; };
+		47A1EDC02500C8AF00FE41C6 /* SHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDBF2500C8AF00FE41C6 /* SHTextField.swift */; };
+		47A1EDC32500C90F00FE41C6 /* SHButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC22500C90F00FE41C6 /* SHButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		47801BA62500AB0D00D2B91F /* DonationListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationListVC.swift; sourceTree = "<group>"; };
 		47801BA92500AE2200D2B91F /* SHTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHTabBar.swift; sourceTree = "<group>"; };
 		47801BAB2500B87600D2B91F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		47A1EDB92500BED900FE41C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		47A1EDBC2500C72300FE41C6 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		47A1EDBF2500C8AF00FE41C6 /* SHTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHTextField.swift; sourceTree = "<group>"; };
+		47A1EDC22500C90F00FE41C6 /* SHButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHButton.swift; sourceTree = "<group>"; };
 		9329F10451666FC5CC2C7405 /* Pods-SKATE with Heart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKATE with Heart.debug.xcconfig"; path = "Target Support Files/Pods-SKATE with Heart/Pods-SKATE with Heart.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +64,6 @@
 				9329F10451666FC5CC2C7405 /* Pods-SKATE with Heart.debug.xcconfig */,
 				4645452B1E6CC9046B53F278 /* Pods-SKATE with Heart.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -101,6 +108,7 @@
 		47801B992500A92E00D2B91F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				47A1EDB92500BED900FE41C6 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -108,6 +116,7 @@
 		47801B9A2500A93600D2B91F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				47A1EDBB2500C70800FE41C6 /* Signup */,
 				47801BA22500AAAC00D2B91F /* Create Donation */,
 				47801BA32500AAC200D2B91F /* Donations List */,
 			);
@@ -117,6 +126,8 @@
 		47801B9B2500A94900D2B91F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				47A1EDC12500C8F800FE41C6 /* Buttons */,
+				47A1EDBE2500C89000FE41C6 /* Text Fields */,
 				47801BA82500ADF000D2B91F /* Tab Bar */,
 			);
 			path = "Custom Views";
@@ -166,6 +177,30 @@
 				47801BA92500AE2200D2B91F /* SHTabBar.swift */,
 			);
 			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		47A1EDBB2500C70800FE41C6 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				47A1EDBC2500C72300FE41C6 /* SignupVC.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		47A1EDBE2500C89000FE41C6 /* Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				47A1EDBF2500C8AF00FE41C6 /* SHTextField.swift */,
+			);
+			path = "Text Fields";
+			sourceTree = "<group>";
+		};
+		47A1EDC12500C8F800FE41C6 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				47A1EDC22500C90F00FE41C6 /* SHButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,12 +318,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A1EDC02500C8AF00FE41C6 /* SHTextField.swift in Sources */,
 				47801B862500A68F00D2B91F /* AppDelegate.swift in Sources */,
 				47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */,
 				47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */,
+				47A1EDBD2500C72300FE41C6 /* SignupVC.swift in Sources */,
 				47801B882500A68F00D2B91F /* SceneDelegate.swift in Sources */,
+				47A1EDBA2500BED900FE41C6 /* User.swift in Sources */,
 				47801BA52500AAEA00D2B91F /* CreateDonationVC.swift in Sources */,
 				47801B9F2500A9FE00D2B91F /* UIView+Ext.swift in Sources */,
+				47A1EDC32500C90F00FE41C6 /* SHButton.swift in Sources */,
 				47801BAA2500AE2200D2B91F /* SHTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
