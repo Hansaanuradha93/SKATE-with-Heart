@@ -2,6 +2,7 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    // MARK: Properties
     fileprivate let loginViewModel = LoginVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
@@ -18,6 +19,8 @@ class LoginVC: UIViewController {
         return stackView
     }()
     
+    
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradient()
@@ -38,7 +41,11 @@ class LoginVC: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
-    
+}
+
+
+// MARK: - Objc Methods
+extension LoginVC {
     
     @objc fileprivate func handleTapDismiss() {
         view.endEditing(true)
@@ -84,7 +91,11 @@ class LoginVC: UIViewController {
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: (difference + 10))
     }
-    
+}
+
+
+// MARK: - Methods
+extension LoginVC {
     
     fileprivate func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
