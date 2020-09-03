@@ -28,6 +28,7 @@
 		47A1EDCD2500E88B00FE41C6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */; };
 		47A1EDCF2500EACA00FE41C6 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDCE2500EACA00FE41C6 /* LoginVM.swift */; };
 		47A1EDD12501396000FE41C6 /* CreateDonationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDD02501396000FE41C6 /* CreateDonationVM.swift */; };
+		47A1EDD325014A1900FE41C6 /* DonationListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDD225014A1900FE41C6 /* DonationListVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		47A1EDCE2500EACA00FE41C6 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		47A1EDD02501396000FE41C6 /* CreateDonationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDonationVM.swift; sourceTree = "<group>"; };
+		47A1EDD225014A1900FE41C6 /* DonationListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationListVM.swift; sourceTree = "<group>"; };
 		9329F10451666FC5CC2C7405 /* Pods-SKATE with Heart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKATE with Heart.debug.xcconfig"; path = "Target Support Files/Pods-SKATE with Heart/Pods-SKATE with Heart.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				47801BA62500AB0D00D2B91F /* DonationListVC.swift */,
+				47A1EDD225014A1900FE41C6 /* DonationListVM.swift */,
 			);
 			path = "Donations List";
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */,
 				47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */,
 				47A1EDBD2500C72300FE41C6 /* SignupVC.swift in Sources */,
+				47A1EDD325014A1900FE41C6 /* DonationListVM.swift in Sources */,
 				47801B882500A68F00D2B91F /* SceneDelegate.swift in Sources */,
 				47A1EDC52500CDBA00FE41C6 /* SignUpVM.swift in Sources */,
 				47A1EDBA2500BED900FE41C6 /* User.swift in Sources */,
