@@ -29,7 +29,7 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
         collectionview.showsHorizontalScrollIndicator = false
         collectionview.backgroundColor = .white
         view.addSubview(collectionview)
-        collectionview.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 30, left: 0, bottom: 0, right: 0))
+        collectionview.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
