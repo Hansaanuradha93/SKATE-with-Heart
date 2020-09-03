@@ -1,12 +1,16 @@
 import UIKit
 
 class SignupVC: UIViewController {
+    
+    fileprivate let signupViewModel = SignUpViewModel()
 
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
     fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: "Enter email", radius: 25)
     fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: "Enter password", radius: 25)
     fileprivate let signupButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Sign Up", titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let goToLoginButton = SHButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
+
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
@@ -21,6 +25,8 @@ class SignupVC: UIViewController {
         super.viewDidLoad()
         setupGradient()
         setupUI()
+        addTargets()
+        setupRegistrationViewModelObserver()
     }
     
     override func viewDidLayoutSubviews() {
@@ -30,6 +36,46 @@ class SignupVC: UIViewController {
     
     @objc fileprivate func handleTap() {
         view.endEditing(true)
+    }
+    
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        signupViewModel.fullName = fullNameTextField.text
+        signupViewModel.email = emailTextField.text
+        signupViewModel.password = passwordTextField.text
+    }
+    
+    
+    fileprivate func setupRegistrationViewModelObserver() {
+        signupViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+            guard let self = self, let isFormValid = isFormValid else { return }
+            if isFormValid {
+                self.signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
+                self.signupButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.signupButton.backgroundColor = UIColor.appColor(color: .lightGray)
+                self.signupButton.setTitleColor(.gray, for: .disabled)
+            }
+            self.signupButton.isEnabled = isFormValid
+        }
+        
+        signupViewModel.bindableIsRegistering.bind { [weak self] isRegistering in
+            guard let self = self, let isRegistering = isRegistering else { return }
+            if isRegistering {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
+    }
+    
+    
+    fileprivate func addTargets() {
+        fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+//        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+//        goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
     }
     
     fileprivate func setupGradient() {
@@ -51,5 +97,8 @@ class SignupVC: UIViewController {
         view.addSubview(verticalStackView)
         verticalStackView.centerInSuperview()
         verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+        
+        view.addSubview(goToLoginButton)
+        goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
