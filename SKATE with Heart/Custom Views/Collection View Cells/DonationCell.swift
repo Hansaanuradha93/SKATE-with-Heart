@@ -1,13 +1,19 @@
-//
-//  DonationCell.swift
-//  SKATE with Heart
-//
-//  Created by Hansa Anuradha on 9/3/20.
-//  Copyright © 2020 Hansa Anuradha. All rights reserved.
-//
-
 import UIKit
 
 class DonationCell: UICollectionViewCell {
     
+    static let reuseID = "DonationCell"
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    
+    required init?(coder: NSCoder) { fatalError() }
+    
+    
+    func setupUI() {
+        backgroundColor = .red
+    }
 }
