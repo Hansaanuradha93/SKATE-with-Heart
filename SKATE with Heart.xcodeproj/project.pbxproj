@@ -88,6 +88,7 @@
 		47801B9B2500A94900D2B91F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				47801BA82500ADF000D2B91F /* Tab Bar */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -127,6 +128,13 @@
 				47801BA62500AB0D00D2B91F /* DonationListVC.swift */,
 			);
 			path = "Donations List";
+			sourceTree = "<group>";
+		};
+		47801BA82500ADF000D2B91F /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
