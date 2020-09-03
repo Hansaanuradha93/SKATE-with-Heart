@@ -56,6 +56,26 @@ class CreateDonationVC: UIViewController {
     }
     
     
+    @objc fileprivate func handleDonation() {
+        createDonationViewModel.saveDonationInfo { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.presentAlert(title: "Donation Saving Failed!", message: error.localizedDescription, buttonTitle: "OK")
+                return
+            }
+            self.presentAlert(title: "Donation Saved", message: "Donation saved successfully", buttonTitle: "OK")
+            self.clearData()
+        }
+    }
+    
+    
+    fileprivate func clearData() {
+        fullNameTextField.text = ""
+        donationTextField.text = ""
+        pickupLocationTextField.text = ""
+    }
+    
+    
     fileprivate func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -75,14 +95,14 @@ class CreateDonationVC: UIViewController {
             self.saveDonationButton.isEnabled = isFormValid
         }
         
-//        signupViewModel.bindableIsRegistering.bind { [weak self] isRegistering in
-//            guard let self = self, let isRegistering = isRegistering else { return }
-//            if isRegistering {
-//                self.showPreloader()
-//            } else {
-//                self.hidePreloader()
-//            }
-//        }
+        createDonationViewModel.bindableIsSaving.bind { [weak self] isSaving in
+            guard let self = self, let isSaving = isSaving else { return }
+            if isSaving {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
     }
     
     
@@ -91,7 +111,7 @@ class CreateDonationVC: UIViewController {
         fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         donationTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         pickupLocationTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-//        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        saveDonationButton.addTarget(self, action: #selector(handleDonation), for: .touchUpInside)
     }
     
     

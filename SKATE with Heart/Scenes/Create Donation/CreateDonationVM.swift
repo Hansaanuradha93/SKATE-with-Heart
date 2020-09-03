@@ -11,7 +11,7 @@ class CreateDonationVM {
     
     // MARK: Bindlable
     var bindalbeIsFormValid = Bindable<Bool>()
-    var bindableIsRegistering = Bindable<Bool>()
+    var bindableIsSaving = Bindable<Bool>()
 }
 
 
@@ -52,6 +52,30 @@ extension CreateDonationVM {
 //            completion(nil)
 //        }
 //    }
+    
+    func saveDonationInfo(completion: @escaping (Error?) -> ()) {
+        self.bindableIsSaving.value = true
+        let uid = Auth.auth().currentUser?.uid ?? ""
+        let donationInfo: [String : Any] = [
+            "uid": uid,
+            "fullname": fullName ?? "",
+            "donation": donation ?? "",
+            "location": pickupLocation ?? "",
+            "isPickedUp": false,
+            "timestamp": Timestamp(date: Date())
+        ]
+        
+        Firestore.firestore().collection("donations").addDocument(data: donationInfo) { [weak self] error in
+            guard let self = self else { return }
+            self.bindableIsSaving.value = false
+            if let error = error {
+                completion(error)
+                return
+            }
+            print("Authentication successfull")
+            completion(nil)
+        }
+    }
     
     
     func checkFormValidity() {
