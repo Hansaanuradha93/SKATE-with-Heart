@@ -13,6 +13,8 @@
 		47801B922500A69000D2B91F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47801B902500A69000D2B91F /* LaunchScreen.storyboard */; };
 		47801B9F2500A9FE00D2B91F /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801B9E2500A9FE00D2B91F /* UIView+Ext.swift */; };
 		47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA02500AA3B00D2B91F /* UIColor+Ext.swift */; };
+		47801BA52500AAEA00D2B91F /* CreateDonationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA42500AAEA00D2B91F /* CreateDonationVC.swift */; };
+		47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA62500AB0D00D2B91F /* DonationListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		47801B932500A69000D2B91F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47801B9E2500A9FE00D2B91F /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		47801BA02500AA3B00D2B91F /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		47801BA42500AAEA00D2B91F /* CreateDonationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDonationVC.swift; sourceTree = "<group>"; };
+		47801BA62500AB0D00D2B91F /* DonationListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 		47801B9A2500A93600D2B91F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				47801BA22500AAAC00D2B91F /* Create Donation */,
+				47801BA32500AAC200D2B91F /* Donations List */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -105,6 +111,22 @@
 				47801BA02500AA3B00D2B91F /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		47801BA22500AAAC00D2B91F /* Create Donation */ = {
+			isa = PBXGroup;
+			children = (
+				47801BA42500AAEA00D2B91F /* CreateDonationVC.swift */,
+			);
+			path = "Create Donation";
+			sourceTree = "<group>";
+		};
+		47801BA32500AAC200D2B91F /* Donations List */ = {
+			isa = PBXGroup;
+			children = (
+				47801BA62500AB0D00D2B91F /* DonationListVC.swift */,
+			);
+			path = "Donations List";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,7 +201,9 @@
 			files = (
 				47801B862500A68F00D2B91F /* AppDelegate.swift in Sources */,
 				47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */,
+				47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */,
 				47801B882500A68F00D2B91F /* SceneDelegate.swift in Sources */,
+				47801BA52500AAEA00D2B91F /* CreateDonationVC.swift in Sources */,
 				47801B9F2500A9FE00D2B91F /* UIView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
