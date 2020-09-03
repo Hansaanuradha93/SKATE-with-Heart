@@ -26,6 +26,7 @@
 		47A1EDC82500CE8D00FE41C6 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC72500CE8D00FE41C6 /* Bindable.swift */; };
 		47A1EDCA2500D0F100FE41C6 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC92500D0F100FE41C6 /* UIViewController+Ext.swift */; };
 		47A1EDCD2500E88B00FE41C6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */; };
+		47A1EDCF2500EACA00FE41C6 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDCE2500EACA00FE41C6 /* LoginVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		47A1EDC72500CE8D00FE41C6 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		47A1EDC92500D0F100FE41C6 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		47A1EDCE2500EACA00FE41C6 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		9329F10451666FC5CC2C7405 /* Pods-SKATE with Heart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKATE with Heart.debug.xcconfig"; path = "Target Support Files/Pods-SKATE with Heart/Pods-SKATE with Heart.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */,
+				47A1EDCE2500EACA00FE41C6 /* LoginVM.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				47A1EDC02500C8AF00FE41C6 /* SHTextField.swift in Sources */,
 				47A1EDCA2500D0F100FE41C6 /* UIViewController+Ext.swift in Sources */,
 				47801B862500A68F00D2B91F /* AppDelegate.swift in Sources */,
+				47A1EDCF2500EACA00FE41C6 /* LoginVM.swift in Sources */,
 				47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */,
 				47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */,
 				47A1EDBD2500C72300FE41C6 /* SignupVC.swift in Sources */,

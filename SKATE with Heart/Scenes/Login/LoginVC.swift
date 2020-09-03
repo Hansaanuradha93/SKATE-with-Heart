@@ -2,8 +2,9 @@ import UIKit
 
 class LoginVC: UIViewController {
 
-    fileprivate let gradientLayer = CAGradientLayer()
+    fileprivate let loginViewModel = LoginVM()
 
+    fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: "Enter email", radius: 25)
     fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: "Enter password", radius: 25)
     fileprivate let loginButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
@@ -21,6 +22,8 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         setupGradient()
         setupUI()
+        addTargets()
+        setupLoginViewModelObserver()
     }
     
     
@@ -30,10 +33,54 @@ class LoginVC: UIViewController {
     }
     
     
+    @objc fileprivate func handleTapDismiss() {
+        view.endEditing(true)
+    }
+    
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        loginViewModel.email = emailTextField.text
+        loginViewModel.password = passwordTextField.text
+    }
+    
+    
+    fileprivate func setupLoginViewModelObserver() {
+        loginViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+            guard let self = self, let isFormValid = isFormValid else { return }
+            if isFormValid {
+                self.loginButton.backgroundColor = UIColor.appColor(color: .darkPink)
+                self.loginButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.loginButton.backgroundColor = UIColor.appColor(color: .lightGray)
+                self.loginButton.setTitleColor(.gray, for: .disabled)
+            }
+            self.loginButton.isEnabled = isFormValid
+        }
+        
+        loginViewModel.bindableIsRegistering.bind { [weak self] isRegistering in
+            guard let self = self, let isRegistering = isRegistering else { return }
+            if isRegistering {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
+    }
+    
+    
     fileprivate func setupGradient() {
         gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
         gradientLayer.locations = [0, 1]
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    
+    fileprivate func addTargets() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+//        loginButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+//        goToSignupButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
     }
     
     
