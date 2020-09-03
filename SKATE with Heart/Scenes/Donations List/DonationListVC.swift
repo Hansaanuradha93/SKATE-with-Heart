@@ -20,7 +20,7 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         layout.minimumLineSpacing = 40
-        layout.itemSize = CGSize(width: 300, height: 500)
+        layout.itemSize = CGSize(width: 300, height: 550)
         
         collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.dataSource = self
