@@ -41,5 +41,13 @@ extension SHTextField {
     fileprivate func configure() {
         backgroundColor = .white
     }
+    
+    
+    func setRoundedBorder(borderColor: UIColor, borderWidth: CGFloat, radius: CGFloat) {
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+    }
 }
 
