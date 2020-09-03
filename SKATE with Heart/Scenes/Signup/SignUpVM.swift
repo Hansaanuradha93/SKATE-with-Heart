@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class SignUpViewModel {
+class SignUpVM {
     
     // MARK: Properties
     var fullName: String? { didSet { checkFormValidity() } }
@@ -15,7 +15,7 @@ class SignUpViewModel {
 
 
 // MARK: - Methods
-extension SignUpViewModel {
+extension SignUpVM {
     
     func performSignUp(completion: @escaping (Error?) -> ()) {
         guard let email = email, let password = password else { return }

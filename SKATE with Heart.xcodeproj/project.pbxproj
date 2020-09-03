@@ -22,9 +22,10 @@
 		47A1EDBD2500C72300FE41C6 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDBC2500C72300FE41C6 /* SignupVC.swift */; };
 		47A1EDC02500C8AF00FE41C6 /* SHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDBF2500C8AF00FE41C6 /* SHTextField.swift */; };
 		47A1EDC32500C90F00FE41C6 /* SHButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC22500C90F00FE41C6 /* SHButton.swift */; };
-		47A1EDC52500CDBA00FE41C6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC42500CDBA00FE41C6 /* SignupViewModel.swift */; };
+		47A1EDC52500CDBA00FE41C6 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC42500CDBA00FE41C6 /* SignUpVM.swift */; };
 		47A1EDC82500CE8D00FE41C6 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC72500CE8D00FE41C6 /* Bindable.swift */; };
 		47A1EDCA2500D0F100FE41C6 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDC92500D0F100FE41C6 /* UIViewController+Ext.swift */; };
+		47A1EDCD2500E88B00FE41C6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +47,10 @@
 		47A1EDBC2500C72300FE41C6 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		47A1EDBF2500C8AF00FE41C6 /* SHTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHTextField.swift; sourceTree = "<group>"; };
 		47A1EDC22500C90F00FE41C6 /* SHButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHButton.swift; sourceTree = "<group>"; };
-		47A1EDC42500CDBA00FE41C6 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		47A1EDC42500CDBA00FE41C6 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 		47A1EDC72500CE8D00FE41C6 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		47A1EDC92500D0F100FE41C6 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		9329F10451666FC5CC2C7405 /* Pods-SKATE with Heart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKATE with Heart.debug.xcconfig"; path = "Target Support Files/Pods-SKATE with Heart/Pods-SKATE with Heart.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 		47801B9A2500A93600D2B91F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				47A1EDCB2500E86F00FE41C6 /* Login */,
 				47A1EDBB2500C70800FE41C6 /* Signup */,
 				47801BA22500AAAC00D2B91F /* Create Donation */,
 				47801BA32500AAC200D2B91F /* Donations List */,
@@ -191,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				47A1EDBC2500C72300FE41C6 /* SignupVC.swift */,
-				47A1EDC42500CDBA00FE41C6 /* SignupViewModel.swift */,
+				47A1EDC42500CDBA00FE41C6 /* SignUpVM.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -218,6 +221,14 @@
 				47A1EDC72500CE8D00FE41C6 /* Bindable.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		47A1EDCB2500E86F00FE41C6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				47A1EDCC2500E88B00FE41C6 /* LoginVC.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,12 +354,13 @@
 				47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */,
 				47A1EDBD2500C72300FE41C6 /* SignupVC.swift in Sources */,
 				47801B882500A68F00D2B91F /* SceneDelegate.swift in Sources */,
-				47A1EDC52500CDBA00FE41C6 /* SignupViewModel.swift in Sources */,
+				47A1EDC52500CDBA00FE41C6 /* SignUpVM.swift in Sources */,
 				47A1EDBA2500BED900FE41C6 /* User.swift in Sources */,
 				47801BA52500AAEA00D2B91F /* CreateDonationVC.swift in Sources */,
 				47801B9F2500A9FE00D2B91F /* UIView+Ext.swift in Sources */,
 				47A1EDC32500C90F00FE41C6 /* SHButton.swift in Sources */,
 				47801BAA2500AE2200D2B91F /* SHTabBar.swift in Sources */,
+				47A1EDCD2500E88B00FE41C6 /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

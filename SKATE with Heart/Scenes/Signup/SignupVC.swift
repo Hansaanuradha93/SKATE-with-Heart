@@ -3,7 +3,7 @@ import UIKit
 class SignupVC: UIViewController {
     
     // MARK: Properties
-    fileprivate let signupViewModel = SignUpViewModel()
+    fileprivate let signupViewModel = SignUpVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
