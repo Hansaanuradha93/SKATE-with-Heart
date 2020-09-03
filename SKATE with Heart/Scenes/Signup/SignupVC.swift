@@ -55,8 +55,15 @@ class SignupVC: UIViewController {
                 return
             }
             print("Yup, its working")
-//            self.navigateToHome()
+            self.navigateToHome()
         }
+    }
+    
+    
+    fileprivate func navigateToHome() {
+        let controller = SHTabBar()
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
     }
     
     
