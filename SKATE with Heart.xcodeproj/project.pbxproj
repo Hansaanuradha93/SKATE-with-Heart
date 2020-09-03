@@ -15,6 +15,7 @@
 		47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA02500AA3B00D2B91F /* UIColor+Ext.swift */; };
 		47801BA52500AAEA00D2B91F /* CreateDonationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA42500AAEA00D2B91F /* CreateDonationVC.swift */; };
 		47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA62500AB0D00D2B91F /* DonationListVC.swift */; };
+		47801BAA2500AE2200D2B91F /* SHTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801BA92500AE2200D2B91F /* SHTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		47801BA02500AA3B00D2B91F /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		47801BA42500AAEA00D2B91F /* CreateDonationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDonationVC.swift; sourceTree = "<group>"; };
 		47801BA62500AB0D00D2B91F /* DonationListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationListVC.swift; sourceTree = "<group>"; };
+		47801BA92500AE2200D2B91F /* SHTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		47801BA82500ADF000D2B91F /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
+				47801BA92500AE2200D2B91F /* SHTabBar.swift */,
 			);
 			path = "Tab Bar";
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				47801B882500A68F00D2B91F /* SceneDelegate.swift in Sources */,
 				47801BA52500AAEA00D2B91F /* CreateDonationVC.swift in Sources */,
 				47801B9F2500A9FE00D2B91F /* UIView+Ext.swift in Sources */,
+				47801BAA2500AE2200D2B91F /* SHTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
