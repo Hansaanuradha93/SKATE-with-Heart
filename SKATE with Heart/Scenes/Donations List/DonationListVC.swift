@@ -52,6 +52,9 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DonationCell.reuseID, for: indexPath) as! DonationCell
         cell.setup(donation: donationListViewModel.donations[indexPath.item])
+//        cell.pickUpButtonOnClick = { () in
+//            print(123)
+//        }
         return cell
     }
     

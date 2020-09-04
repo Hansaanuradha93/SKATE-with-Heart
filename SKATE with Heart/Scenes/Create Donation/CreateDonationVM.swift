@@ -55,8 +55,11 @@ extension CreateDonationVM {
     
     func saveDonationInfo(completion: @escaping (Error?) -> ()) {
         self.bindableIsSaving.value = true
+        let reference = Firestore.firestore().collection("donations")
+        let documentId = reference.document().documentID
         let uid = Auth.auth().currentUser?.uid ?? ""
         let donationInfo: [String : Any] = [
+            "id": documentId,
             "uid": uid,
             "fullname": fullName ?? "",
             "donation": donation ?? "",
@@ -65,14 +68,14 @@ extension CreateDonationVM {
             "timestamp": Timestamp(date: Date())
         ]
         
-        Firestore.firestore().collection("donations").addDocument(data: donationInfo) { [weak self] error in
+        reference.document(documentId).setData(donationInfo) { [weak self] error in
             guard let self = self else { return }
             self.bindableIsSaving.value = false
             if let error = error {
                 completion(error)
                 return
             }
-            print("Authentication successfull")
+            print("Donation saved successfully")
             completion(nil)
         }
     }

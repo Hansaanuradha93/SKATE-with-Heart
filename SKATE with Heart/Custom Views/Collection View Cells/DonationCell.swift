@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class DonationCell: UICollectionViewCell {
     
@@ -10,6 +11,9 @@ class DonationCell: UICollectionViewCell {
     fileprivate let pickupLocationLabel = SHLabel(numberOfLines: 0)
     fileprivate let pickupButton = SHButton(backgroundColor: .white, title: "Pick Up", titleColor: UIColor.appColor(color: .pink), radius: 20, fontSize: 20)
     fileprivate let pickupStateLabel = SHLabel(textColor: .white)
+    
+//    var pickUpButtonOnClick: (() -> ())?
+    var donation: Donation?
     
     
     // MARK: Initializers
@@ -35,14 +39,28 @@ class DonationCell: UICollectionViewCell {
 extension DonationCell {
     
     @objc fileprivate func handlePickUp() {
-        print(123)
+        if let donation = donation, let documentID = donation.id {
+            let ref = Firestore.firestore().collection("donations").document(documentID)
+            ref.updateData(["isPickedUp": true])
+        }
     }
     
     
     func setup(donation: Donation) {
+        self.donation = donation
         titleLabel.attributedText = NSMutableAttributedString().bold("\(donation.donation ?? "")\n", 22).normal("donated by \(donation.fullname ?? "")", 18)
         pickupLocationLabel.text = "Donations can be picked up at,\n\(donation.location ?? "")"
-        pickupStateLabel.text = (donation.isPickedUp ?? false) ? "Already Picked Up" : "Yet to Pick Up"
+        pickupStateLabel.text = (donation.isPickedUp ?? false) ? "Already Picked Up ✅" : "Yet to Pick Up "
+        
+        if donation.isPickedUp ?? false {
+            pickupButton.isEnabled = false
+            pickupButton.backgroundColor = UIColor.appColor(color: .lightGray)
+            pickupButton.setTitleColor(.gray, for: .normal)
+        } else {
+            pickupButton.isEnabled = true
+            pickupButton.backgroundColor = .white
+            pickupButton.setTitleColor(UIColor.appColor(color: .pink), for: .normal)
+        }
     }
     
     

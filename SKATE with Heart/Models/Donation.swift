@@ -1,11 +1,12 @@
 import Firebase
 
 struct Donation {
-    let uid, fullname, donation, location: String?
+    let id, uid, fullname, donation, location: String?
     let isPickedUp: Bool?
     let timestamp: Timestamp?
     
     init(dictionary: [String : Any]) {
+        self.id = dictionary["id"] as? String
         self.uid = dictionary["uid"] as? String
         self.fullname = dictionary["fullname"] as? String
         self.donation = dictionary["donation"] as? String
