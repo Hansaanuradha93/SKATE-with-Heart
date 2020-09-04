@@ -1,5 +1,9 @@
 import UIKit
-import Firebase
+
+protocol DonationCellDelegate {
+    func pickUpButtonTapped(donation: Donation?)
+}
+
 
 class DonationCell: UICollectionViewCell {
     
@@ -12,8 +16,8 @@ class DonationCell: UICollectionViewCell {
     fileprivate let pickupButton = SHButton(backgroundColor: .white, title: "Pick Up", titleColor: UIColor.appColor(color: .pink), radius: 20, fontSize: 20)
     fileprivate let pickupStateLabel = SHLabel(textColor: .white)
     
-//    var pickUpButtonOnClick: (() -> ())?
     var donation: Donation?
+    var donationCellDelegate: DonationCellDelegate?
     
     
     // MARK: Initializers
@@ -39,10 +43,7 @@ class DonationCell: UICollectionViewCell {
 extension DonationCell {
     
     @objc fileprivate func handlePickUp() {
-        if let donation = donation, let documentID = donation.id {
-            let ref = Firestore.firestore().collection("donations").document(documentID)
-            ref.updateData(["isPickedUp": true])
-        }
+        donationCellDelegate?.pickUpButtonTapped(donation: donation)
     }
     
     

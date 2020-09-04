@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class DonationListVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -45,17 +46,49 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
         collectionview.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
+    
+    fileprivate func addAlert(donation: Donation?) {
+        let alertController = UIAlertController(title: "Are you sure", message: "Did you pickup the donation?", preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            self.updatePickupState(donation: donation)
+        }
+        let cancelAction = UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil)
+
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    fileprivate func updatePickupState(donation: Donation?) {
+        if let donation = donation, let documentID = donation.id {
+            let ref = Firestore.firestore().collection("donations").document(documentID)
+            ref.updateData(["isPickedUp": true])
+        }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return donationListViewModel.donations.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DonationCell.reuseID, for: indexPath) as! DonationCell
         cell.setup(donation: donationListViewModel.donations[indexPath.item])
-//        cell.pickUpButtonOnClick = { () in
-//            print(123)
-//        }
+        cell.donationCellDelegate = self
         return cell
     }
+}
+
+
+// MARK: - DonationCellDelegate
+extension DonationListVC: DonationCellDelegate {
     
+    func pickUpButtonTapped(donation: Donation?) {
+       addAlert(donation: donation)
+    }
 }
