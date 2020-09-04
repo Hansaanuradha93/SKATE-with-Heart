@@ -14,7 +14,7 @@ class DonationListVM {
                completion(false)
                return
             }
-            
+            self.donations = []
             querySnapshot?.documents.forEach({ (documentSnapshot) in
                 let dictionary = documentSnapshot.data()
                 let donation = Donation(dictionary: dictionary)

@@ -34,6 +34,11 @@ class DonationCell: UICollectionViewCell {
 // MARK: - Methods
 extension DonationCell {
     
+    @objc fileprivate func handlePickUp() {
+        print(123)
+    }
+    
+    
     func setup(donation: Donation) {
         titleLabel.attributedText = NSMutableAttributedString().bold("\(donation.donation ?? "")\n", 22).normal("donated by \(donation.fullname ?? "")", 18)
         pickupLocationLabel.text = "Donations can be picked up at,\n\(donation.location ?? "")"
@@ -52,6 +57,8 @@ extension DonationCell {
         addSubview(pickupLocationLabel)
         addSubview(pickupButton)
         addSubview(pickupStateLabel)
+        
+        pickupButton.addTarget(self, action: #selector(handlePickUp), for: .touchUpInside)
         
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 25, left: 25, bottom: 0, right: 25))
         pickupLocationLabel.anchor(top: titleLabel.bottomAnchor, leading: titleLabel.leadingAnchor, bottom: nil, trailing: titleLabel.trailingAnchor, padding: .init(top: 25, left: 0, bottom: 0, right: 0))
