@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		386B2958C93FA4578BF912B1 /* Pods_SKATE_with_Heart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1825B08902A75A94334B995E /* Pods_SKATE_with_Heart.framework */; };
+		477D47662501D6380045A368 /* SHLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D47652501D6380045A368 /* SHLabel.swift */; };
+		477D47682501D66D0045A368 /* NSMutableAttributedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D47672501D66D0045A368 /* NSMutableAttributedString+Ext.swift */; };
 		47801B862500A68F00D2B91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801B852500A68F00D2B91F /* AppDelegate.swift */; };
 		47801B882500A68F00D2B91F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47801B872500A68F00D2B91F /* SceneDelegate.swift */; };
 		47801B8F2500A69000D2B91F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47801B8E2500A69000D2B91F /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		1825B08902A75A94334B995E /* Pods_SKATE_with_Heart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKATE_with_Heart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4645452B1E6CC9046B53F278 /* Pods-SKATE with Heart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKATE with Heart.release.xcconfig"; path = "Target Support Files/Pods-SKATE with Heart/Pods-SKATE with Heart.release.xcconfig"; sourceTree = "<group>"; };
+		477D47652501D6380045A368 /* SHLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHLabel.swift; sourceTree = "<group>"; };
+		477D47672501D66D0045A368 /* NSMutableAttributedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ext.swift"; sourceTree = "<group>"; };
 		47801B822500A68F00D2B91F /* SKATE with Heart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SKATE with Heart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47801B852500A68F00D2B91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47801B872500A68F00D2B91F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		477D47642501D6200045A368 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				477D47652501D6380045A368 /* SHLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
 		47801B792500A68F00D2B91F = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +156,7 @@
 		47801B9B2500A94900D2B91F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				477D47642501D6200045A368 /* Labels */,
 				47A1EDD42501520E00FE41C6 /* Collection View Cells */,
 				47A1EDC12500C8F800FE41C6 /* Buttons */,
 				47A1EDBE2500C89000FE41C6 /* Text Fields */,
@@ -171,6 +184,7 @@
 				47801B9E2500A9FE00D2B91F /* UIView+Ext.swift */,
 				47801BA02500AA3B00D2B91F /* UIColor+Ext.swift */,
 				47A1EDC92500D0F100FE41C6 /* UIViewController+Ext.swift */,
+				477D47672501D66D0045A368 /* NSMutableAttributedString+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,12 +387,14 @@
 				47A1EDCF2500EACA00FE41C6 /* LoginVM.swift in Sources */,
 				47A1EDD62501523300FE41C6 /* DonationCell.swift in Sources */,
 				47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */,
+				477D47662501D6380045A368 /* SHLabel.swift in Sources */,
 				47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */,
 				47A1EDBD2500C72300FE41C6 /* SignupVC.swift in Sources */,
 				47A1EDD325014A1900FE41C6 /* DonationListVM.swift in Sources */,
 				47801B882500A68F00D2B91F /* SceneDelegate.swift in Sources */,
 				47A1EDC52500CDBA00FE41C6 /* SignUpVM.swift in Sources */,
 				47A1EDBA2500BED900FE41C6 /* User.swift in Sources */,
+				477D47682501D66D0045A368 /* NSMutableAttributedString+Ext.swift in Sources */,
 				47801BA52500AAEA00D2B91F /* CreateDonationVC.swift in Sources */,
 				47801B9F2500A9FE00D2B91F /* UIView+Ext.swift in Sources */,
 				47A1EDC32500C90F00FE41C6 /* SHButton.swift in Sources */,

@@ -2,14 +2,17 @@ import UIKit
 
 class DonationCell: UICollectionViewCell {
     
+    // MARK: Properties
     static let reuseID = "DonationCell"
     
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let titleLabel = SHLabel(numberOfLines: 0)
     fileprivate let pickupLocationLabel = SHLabel(numberOfLines: 0)
-    fileprivate let pickupButton = SHButton(backgroundColor: .white, title: "Pick Up", titleColor: .black, radius: 20, fontSize: 20)
+    fileprivate let pickupButton = SHButton(backgroundColor: .white, title: "Pick Up", titleColor: UIColor.appColor(color: .pink), radius: 20, fontSize: 20)
     fileprivate let pickupStateLabel = SHLabel(textColor: .white)
     
+    
+    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -19,12 +22,17 @@ class DonationCell: UICollectionViewCell {
     required init?(coder: NSCoder) { fatalError() }
     
     
+    // MARK: Cell
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: self.layer)
         gradientLayer.frame = bounds
         gradientLayer.cornerRadius = 20
     }
-    
+}
+
+
+// MARK: - Methods
+extension DonationCell {
     
     func setup() {
         titleLabel.attributedText = NSMutableAttributedString().bold("Skating Board\n", 22).normal("donated by Hansa Anuradha", 18)
@@ -49,51 +57,5 @@ class DonationCell: UICollectionViewCell {
         pickupLocationLabel.anchor(top: titleLabel.bottomAnchor, leading: titleLabel.leadingAnchor, bottom: nil, trailing: titleLabel.trailingAnchor, padding: .init(top: 25, left: 0, bottom: 0, right: 0))
         pickupStateLabel.anchor(top: pickupLocationLabel.bottomAnchor, leading: pickupLocationLabel.leadingAnchor, bottom: nil, trailing: pickupLocationLabel.trailingAnchor, padding: .init(top: 25, left: 0, bottom: 0, right: 0))
         pickupButton.anchor(top: nil, leading: pickupLocationLabel.leadingAnchor, bottom: bottomAnchor, trailing: pickupLocationLabel.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 25, right: 0), size: .init(width: 0, height: 40))
-    }
-}
-
-
-
-class SHLabel: UILabel {
-
-    // MARK: Initializers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    
-    required init?(coder: NSCoder) { fatalError() }
-
-    
-    convenience init(text: String = "", textAlignment: NSTextAlignment = .left, textColor: UIColor = .white, fontSize: CGFloat = 16, numberOfLines: Int = 1) {
-        self.init(frame: .zero)
-        self.text = text
-        self.textAlignment = textAlignment
-        self.textColor = textColor
-        self.font = UIFont.systemFont(ofSize: fontSize)
-        self.numberOfLines = numberOfLines
-    }
-}
-
-
-extension NSMutableAttributedString {
-    
-    func bold(_ value: String, _ fontSize: CGFloat) -> NSMutableAttributedString {
-        let attributes: [NSAttributedString.Key : Any] = [
-            .font: UIFont.boldSystemFont(ofSize: fontSize),
-        ]
-
-        self.append(NSAttributedString(string: value, attributes: attributes))
-        return self
-    }
-
-    
-    func normal(_ value: String, _ fontSize: CGFloat) -> NSMutableAttributedString {
-        let attributes: [NSAttributedString.Key : Any] = [
-            .font: UIFont.systemFont(ofSize: fontSize),
-        ]
-
-        self.append(NSAttributedString(string: value, attributes: attributes))
-        return self
     }
 }
