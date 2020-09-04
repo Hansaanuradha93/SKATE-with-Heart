@@ -20,7 +20,7 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         layout.minimumLineSpacing = 40
-        layout.itemSize = CGSize(width: 300, height: 550)
+        layout.itemSize = CGSize(width: 275, height: 450)
         
         collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.dataSource = self
@@ -38,6 +38,7 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DonationCell.reuseID, for: indexPath) as! DonationCell
+        cell.setup()
         return cell
     }
     
