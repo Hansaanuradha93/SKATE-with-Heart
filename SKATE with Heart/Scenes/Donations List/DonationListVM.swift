@@ -1,5 +1,26 @@
-import Foundation
+import Firebase
 
-struct DonationListVM {
+class DonationListVM {
     
+    var donations = [Donation]()
+    
+    
+    func fetchDonations(completion: @escaping (Bool) -> ()) {
+        let reference = Firestore.firestore().collection("donations")
+//        db.collection("cities").whereField("state", isEqualTo: "CA")
+        reference.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+               print(error.localizedDescription)
+               completion(false)
+               return
+            }
+            
+            querySnapshot?.documents.forEach({ (documentSnapshot) in
+                let dictionary = documentSnapshot.data()
+                let donation = Donation(dictionary: dictionary)
+                self.donations.append(donation)
+            })
+            completion(true)
+        }
+    }
 }

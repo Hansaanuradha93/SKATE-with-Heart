@@ -5,11 +5,24 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
     let donationListViewModel = DonationListVM()
     
     var collectionview: UICollectionView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        fetchDonations()
     }
+    
+    
+    fileprivate func fetchDonations() {
+        self.showPreloader()
+        donationListViewModel.fetchDonations { [weak self] status in
+            guard let self = self else { return }
+            self.hidePreloader()
+            if status { DispatchQueue.main.async { self.collectionview.reloadData() } }
+        }
+    }
+    
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -33,12 +46,12 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return donationListViewModel.donations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DonationCell.reuseID, for: indexPath) as! DonationCell
-        cell.setup()
+        cell.setup(donation: donationListViewModel.donations[indexPath.item])
         return cell
     }
     

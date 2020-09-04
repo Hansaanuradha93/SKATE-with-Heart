@@ -34,10 +34,10 @@ class DonationCell: UICollectionViewCell {
 // MARK: - Methods
 extension DonationCell {
     
-    func setup() {
-        titleLabel.attributedText = NSMutableAttributedString().bold("Skating Board\n", 22).normal("donated by Hansa Anuradha", 18)
-        pickupLocationLabel.text = "Donations can be picked up at,\n" + "Cecilia Chapman\n711-2880\nNulla St.Mankato Mississippi 96522"
-        pickupStateLabel.text = "Yet to Pick Up"
+    func setup(donation: Donation) {
+        titleLabel.attributedText = NSMutableAttributedString().bold("\(donation.donation ?? "")\n", 22).normal("donated by \(donation.fullname ?? "")", 18)
+        pickupLocationLabel.text = "Donations can be picked up at,\n\(donation.location ?? "")"
+        pickupStateLabel.text = (donation.isPickedUp ?? false) ? "Already Picked Up" : "Yet to Pick Up"
     }
     
     
