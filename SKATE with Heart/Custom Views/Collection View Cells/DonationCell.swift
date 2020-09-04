@@ -62,7 +62,7 @@ extension DonationCell {
             } else {
                 pickupButton.isEnabled = true
                 pickupButton.backgroundColor = .white
-                pickupButton.setTitleColor(UIColor.appColor(color: .pink), for: .normal)
+                pickupButton.setTitleColor(UIColor.appColor(color: .darkPink), for: .normal)
             }
         }
     }
@@ -71,7 +71,7 @@ extension DonationCell {
     fileprivate func setupUI() {
         backgroundColor = .clear
         
-        gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
+        gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .darkPink).cgColor]
         gradientLayer.locations = [0, 1]
         layer.insertSublayer(gradientLayer, at: 0)
         
