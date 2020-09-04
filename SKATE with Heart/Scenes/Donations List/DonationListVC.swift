@@ -16,8 +16,8 @@ class DonationListVC: UIViewController {
     
     
     fileprivate func fetchDonations() {
-        self.showPreloader()
-        donationListViewModel.fetchDonations { [weak self] status in
+        showPreloader()
+        donationListViewModel.fetchData { [weak self] status in
             guard let self = self else { return }
             self.hidePreloader()
             if status { DispatchQueue.main.async { self.collectionview.reloadData() } }
@@ -38,7 +38,6 @@ class DonationListVC: UIViewController {
         
         collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.dataSource = self
-//        collectionview.delegate = self
         collectionview.register(DonationCell.self, forCellWithReuseIdentifier: DonationCell.reuseID)
         collectionview.showsHorizontalScrollIndicator = false
         collectionview.backgroundColor = .white
@@ -82,7 +81,7 @@ extension DonationListVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DonationCell.reuseID, for: indexPath) as! DonationCell
-        cell.setup(donation: donationListViewModel.donations[indexPath.item])
+        cell.setup(donation: donationListViewModel.donations[indexPath.item], user: donationListViewModel.user)
         cell.donationCellDelegate = self
         return cell
     }

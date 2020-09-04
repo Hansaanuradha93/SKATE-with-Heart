@@ -13,7 +13,7 @@ class DonationCell: UICollectionViewCell {
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let titleLabel = SHLabel(numberOfLines: 0)
     fileprivate let pickupLocationLabel = SHLabel(numberOfLines: 0)
-    fileprivate let pickupButton = SHButton(backgroundColor: .white, title: "Pick Up", titleColor: UIColor.appColor(color: .pink), radius: 20, fontSize: 20)
+    fileprivate let pickupButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Pick Up", titleColor: .gray, radius: 20, fontSize: 20)
     fileprivate let pickupStateLabel = SHLabel(textColor: .white)
     
     var donation: Donation?
@@ -47,20 +47,23 @@ extension DonationCell {
     }
     
     
-    func setup(donation: Donation) {
+    func setup(donation: Donation, user: User?) {
+        guard let user = user else { return }
         self.donation = donation
         titleLabel.attributedText = NSMutableAttributedString().bold("\(donation.donation ?? "")\n", 22).normal("donated by \(donation.fullname ?? "")", 18)
         pickupLocationLabel.text = "Donations can be picked up at,\n\(donation.location ?? "")"
         pickupStateLabel.text = (donation.isPickedUp ?? false) ? "Already Picked Up ✅" : "Yet to Pick Up "
         
-        if donation.isPickedUp ?? false {
-            pickupButton.isEnabled = false
-            pickupButton.backgroundColor = UIColor.appColor(color: .lightGray)
-            pickupButton.setTitleColor(.gray, for: .normal)
-        } else {
-            pickupButton.isEnabled = true
-            pickupButton.backgroundColor = .white
-            pickupButton.setTitleColor(UIColor.appColor(color: .pink), for: .normal)
+        if user.isAdminUser {
+            if donation.isPickedUp ?? false {
+                pickupButton.isEnabled = false
+                pickupButton.backgroundColor = UIColor.appColor(color: .lightGray)
+                pickupButton.setTitleColor(.gray, for: .normal)
+            } else {
+                pickupButton.isEnabled = true
+                pickupButton.backgroundColor = .white
+                pickupButton.setTitleColor(UIColor.appColor(color: .pink), for: .normal)
+            }
         }
     }
     
@@ -77,6 +80,7 @@ extension DonationCell {
         addSubview(pickupButton)
         addSubview(pickupStateLabel)
         
+        pickupButton.isEnabled = false
         pickupButton.addTarget(self, action: #selector(handlePickUp), for: .touchUpInside)
         
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 25, left: 25, bottom: 0, right: 25))
