@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class DonationListVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class DonationListVC: UIViewController {
 
     let donationListViewModel = DonationListVM()
     
@@ -38,7 +38,7 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
         
         collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.dataSource = self
-        collectionview.delegate = self
+//        collectionview.delegate = self
         collectionview.register(DonationCell.self, forCellWithReuseIdentifier: DonationCell.reuseID)
         collectionview.showsHorizontalScrollIndicator = false
         collectionview.backgroundColor = .white
@@ -69,7 +69,11 @@ class DonationListVC: UIViewController, UICollectionViewDataSource, UICollection
             ref.updateData(["isPickedUp": true])
         }
     }
-    
+}
+
+
+// MARK: - UICollectionViewDataSource
+extension DonationListVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return donationListViewModel.donations.count
