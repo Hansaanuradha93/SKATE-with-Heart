@@ -2,6 +2,7 @@ import UIKit
 
 class CreateDonationVC: UIViewController {
     
+    // MARK: Properties
     fileprivate let createDonationViewModel = CreateDonationVM()
     
     fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: "Your name", radius: 25)
@@ -17,6 +18,8 @@ class CreateDonationVC: UIViewController {
         return stackView
     }()
 
+    
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -30,7 +33,11 @@ class CreateDonationVC: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
-    
+}
+
+
+// MARK: - Objc Methods
+extension CreateDonationVC {
     
     @objc fileprivate func handleTapDismiss() {
         view.endEditing(true)
@@ -67,7 +74,11 @@ class CreateDonationVC: UIViewController {
             self.clearData()
         }
     }
-    
+}
+
+
+// MARK: - Methods
+extension CreateDonationVC {
     
     fileprivate func clearData() {
         fullNameTextField.text = ""
