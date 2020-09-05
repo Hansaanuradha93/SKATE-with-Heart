@@ -3,17 +3,22 @@ import Firebase
 
 class DonationListVC: UIViewController {
 
+    // MARK: Properties
     let donationListViewModel = DonationListVM()
-    
     var collectionview: UICollectionView!
 
     
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         fetchDonations()
     }
-    
+}
+
+
+// MARK: - Methods
+extension DonationListVC {
     
     fileprivate func fetchDonations() {
         showPreloader()
