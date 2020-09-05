@@ -18,41 +18,6 @@ class CreateDonationVM {
 // MARK: - Methods
 extension CreateDonationVM {
     
-//    func performSignUp(completion: @escaping (Error?) -> ()) {
-//        guard let email = email, let password = password else { return }
-//        self.bindableIsRegistering.value = true
-//        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
-//            guard let self = self else { return }
-//            if let error = error {
-//                self.bindableIsRegistering.value = false
-//                completion(error)
-//                return
-//            }
-//            self.saveInfoToFirestore(completion: completion)
-//        }
-//    }
-    
-    
-//    fileprivate func saveInfoToFirestore(completion: @escaping (Error?) -> ()) {
-//        let uid = Auth.auth().currentUser?.uid ?? ""
-//        let userInfo = [
-//            "uid": uid,
-//            "fullname": fullName ?? "",
-//            "email": email ?? "",
-//            "isAdminUser": false
-//            ] as [String : Any]
-//        Firestore.firestore().collection("users").document(uid).setData(userInfo) { [weak self] error in
-//            guard let self = self else { return }
-//            self.bindableIsRegistering.value = false
-//            if let error = error {
-//                completion(error)
-//                return
-//            }
-//            print("Authentication successfull")
-//            completion(nil)
-//        }
-//    }
-    
     func saveDonationInfo(completion: @escaping (Error?) -> ()) {
         self.bindableIsSaving.value = true
         let reference = Firestore.firestore().collection("donations")
