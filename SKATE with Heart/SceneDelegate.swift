@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         var controller: UIViewController!
-        if checkIfUserLoggedIn() {
+        if let _ = Auth.auth().currentUser {
             controller = SHTabBar()
         } else {
             controller = LoginVC()
@@ -19,15 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = controller
         self.window = window
         window.makeKeyAndVisible()
-    }
-    
-    
-    fileprivate func checkIfUserLoggedIn() -> Bool {
-        if let _ = Auth.auth().currentUser {
-            return true
-        } else {
-            return false
-        }
     }
 }
 
