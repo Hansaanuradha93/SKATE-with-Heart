@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		386B2958C93FA4578BF912B1 /* Pods_SKATE_with_Heart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1825B08902A75A94334B995E /* Pods_SKATE_with_Heart.framework */; };
+		475885962547312400DA327D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475885952547312400DA327D /* Constants.swift */; };
 		477D47662501D6380045A368 /* SHLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D47652501D6380045A368 /* SHLabel.swift */; };
 		477D47682501D66D0045A368 /* NSMutableAttributedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D47672501D66D0045A368 /* NSMutableAttributedString+Ext.swift */; };
 		477D476A2501D8190045A368 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D47692501D8190045A368 /* Donation.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		1825B08902A75A94334B995E /* Pods_SKATE_with_Heart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKATE_with_Heart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4645452B1E6CC9046B53F278 /* Pods-SKATE with Heart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKATE with Heart.release.xcconfig"; path = "Target Support Files/Pods-SKATE with Heart/Pods-SKATE with Heart.release.xcconfig"; sourceTree = "<group>"; };
+		475885952547312400DA327D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		477D47652501D6380045A368 /* SHLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHLabel.swift; sourceTree = "<group>"; };
 		477D47672501D66D0045A368 /* NSMutableAttributedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ext.swift"; sourceTree = "<group>"; };
 		477D47692501D8190045A368 /* Donation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		475885942547310E00DA327D /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				475885952547312400DA327D /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		477D47642501D6200045A368 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 				47801B992500A92E00D2B91F /* Models */,
 				47801B9B2500A94900D2B91F /* Custom Views */,
 				47801B9A2500A93600D2B91F /* Scenes */,
+				475885942547310E00DA327D /* Constants */,
 				47A1EDC62500CE7500FE41C6 /* Helper */,
 				47801B9D2500A9C700D2B91F /* Extensions */,
 				47801B9C2500A96700D2B91F /* Support Files */,
@@ -389,6 +400,7 @@
 				47801B862500A68F00D2B91F /* AppDelegate.swift in Sources */,
 				47A1EDCF2500EACA00FE41C6 /* LoginVM.swift in Sources */,
 				47A1EDD62501523300FE41C6 /* DonationCell.swift in Sources */,
+				475885962547312400DA327D /* Constants.swift in Sources */,
 				47801BA12500AA3B00D2B91F /* UIColor+Ext.swift in Sources */,
 				477D47662501D6380045A368 /* SHLabel.swift in Sources */,
 				47801BA72500AB0D00D2B91F /* DonationListVC.swift in Sources */,
