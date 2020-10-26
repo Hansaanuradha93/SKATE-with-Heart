@@ -12,6 +12,21 @@ class DonationListVM {
 // MARK: - Methods
 extension DonationListVM {
     
+    func pickupDonation(donation: Donation?, completion: @escaping (Bool, String) -> ()) {
+        if let donation = donation, let documentID = donation.id {
+            let ref = Firestore.firestore().collection("donations").document(documentID)
+            ref.updateData(["isPickedUp": true]) { (error) in
+                if let error = error {
+                    print(error)
+                    completion(false, error.localizedDescription)
+                    return
+                }
+                completion(true, Strings.donationPickedUpSuceessfully)
+            }
+        }
+    }
+    
+    
     func fetchData(completion: @escaping (Bool) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let docRef = Firestore.firestore().collection("users").document(uid)

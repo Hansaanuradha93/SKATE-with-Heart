@@ -4,7 +4,7 @@ import Firebase
 class DonationListVC: UIViewController {
 
     // MARK: Properties
-    let donationListViewModel = DonationListVM()
+    let viewModel = DonationListVM()
     var collectionview: UICollectionView!
 
     
@@ -22,7 +22,7 @@ extension DonationListVC {
     
     fileprivate func fetchDonations() {
         showPreloader()
-        donationListViewModel.fetchData { [weak self] status in
+        viewModel.fetchData { [weak self] status in
             guard let self = self else { return }
             self.hidePreloader()
             if status { DispatchQueue.main.async { self.collectionview.reloadData() } }
@@ -32,7 +32,7 @@ extension DonationListVC {
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Donation List"
+        navigationItem.title = Strings.donationList
         view.backgroundColor = .white
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -52,13 +52,13 @@ extension DonationListVC {
     
     
     fileprivate func addAlert(donation: Donation?) {
-        let alertController = UIAlertController(title: "Are you sure", message: "Did you pickup the donation?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: Strings.areYouSure, message: Strings.didYouPickupTheDonation, preferredStyle: .alert)
 
-        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+        let okAction = UIAlertAction(title: Strings.yes, style: UIAlertAction.Style.default) {
             UIAlertAction in
             self.updatePickupState(donation: donation)
         }
-        let cancelAction = UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: Strings.no, style: UIAlertAction.Style.cancel, handler: nil)
 
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
@@ -68,9 +68,8 @@ extension DonationListVC {
     
     
     fileprivate func updatePickupState(donation: Donation?) {
-        if let donation = donation, let documentID = donation.id {
-            let ref = Firestore.firestore().collection("donations").document(documentID)
-            ref.updateData(["isPickedUp": true])
+        viewModel.pickupDonation(donation: donation) { status, message in
+            if status { print(message) }
         }
     }
 }
@@ -80,13 +79,13 @@ extension DonationListVC {
 extension DonationListVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return donationListViewModel.donations.count
+        return viewModel.donations.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DonationCell.reuseID, for: indexPath) as! DonationCell
-        cell.setup(donation: donationListViewModel.donations[indexPath.item], user: donationListViewModel.user)
+        cell.setup(donation: viewModel.donations[indexPath.item], user: viewModel.user)
         cell.donationCellDelegate = self
         return cell
     }
