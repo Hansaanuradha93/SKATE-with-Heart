@@ -5,10 +5,10 @@ class CreateDonationVC: UIViewController {
     // MARK: Properties
     fileprivate let createDonationViewModel = CreateDonationVM()
     
-    fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: "Your name", radius: 25)
-    fileprivate let donationTextField = SHTextField(padding: 16, placeholderText: "What are you donating", radius: 25)
-    fileprivate let pickupLocationTextField = SHTextField(padding: 16, placeholderText: "Pickup location", radius: 25)
-    fileprivate let saveDonationButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Save Donation", titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: Strings.yourName, radius: 25)
+    fileprivate let donationTextField = SHTextField(padding: 16, placeholderText: Strings.whatAreYouDonating, radius: 25)
+    fileprivate let pickupLocationTextField = SHTextField(padding: 16, placeholderText: Strings.pickupLocation, radius: 25)
+    fileprivate let saveDonationButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.saveDonation, titleColor: .gray, radius: 25, fontSize: 24)
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, donationTextField, pickupLocationTextField, saveDonationButton])
@@ -64,14 +64,14 @@ extension CreateDonationVC {
     
     
     @objc fileprivate func handleDonation() {
-        createDonationViewModel.saveDonationInfo { [weak self] error in
+        createDonationViewModel.saveDonationInfo { [weak self] status, message in
             guard let self = self else { return }
-            if let error = error {
-                self.presentAlert(title: "Donation Saving Failed!", message: error.localizedDescription, buttonTitle: "OK")
-                return
+            if status {
+                self.presentAlert(title: Strings.successful, message: message, buttonTitle: Strings.ok)
+                self.clearData()
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
-            self.presentAlert(title: "Donation Saved", message: "Donation saved successfully", buttonTitle: "OK")
-            self.clearData()
         }
     }
 }
@@ -128,7 +128,7 @@ extension CreateDonationVC {
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Create Donation"
+        navigationItem.title = Strings.createDonation
         view.backgroundColor = .white
         
         fullNameTextField.autocorrectionType = .no

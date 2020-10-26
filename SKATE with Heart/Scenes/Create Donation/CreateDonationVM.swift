@@ -18,11 +18,12 @@ class CreateDonationVM {
 // MARK: - Methods
 extension CreateDonationVM {
     
-    func saveDonationInfo(completion: @escaping (Error?) -> ()) {
+    func saveDonationInfo(completion: @escaping (Bool, String) -> ()) {
         self.bindableIsSaving.value = true
         let reference = Firestore.firestore().collection("donations")
         let documentId = reference.document().documentID
         let uid = Auth.auth().currentUser?.uid ?? ""
+        
         let donationInfo: [String : Any] = [
             "id": documentId,
             "uid": uid,
@@ -37,11 +38,11 @@ extension CreateDonationVM {
             guard let self = self else { return }
             self.bindableIsSaving.value = false
             if let error = error {
-                completion(error)
+                print(error)
+                completion(false, Strings.somethingWentWrong)
                 return
             }
-            print("Donation saved successfully")
-            completion(nil)
+            completion(true, Strings.donationSavedSuccessful)
         }
     }
     
