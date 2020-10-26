@@ -32,38 +32,48 @@ extension DonationListVM {
     
     fileprivate func fetchDonations(user: User, completion: @escaping (Bool) -> ()) {
         if user.isAdminUser {
-            let reference = Firestore.firestore().collection("donations")
-            reference.addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    completion(false)
-                    return
-                }
-                self.donations = []
-                querySnapshot?.documents.forEach({ (documentSnapshot) in
-                    let dictionary = documentSnapshot.data()
-                    let donation = Donation(dictionary: dictionary)
-                    self.donationsDictionary[donation.id ?? ""] = donation
-                })
-                self.sortDonationsByTimestamp(completion: completion)
-            }
+            self.fetchAllDonations(completion: completion)
         } else {
-            let uid = user.uid ?? ""
-            let reference = Firestore.firestore().collection("donations").whereField("uid", isEqualTo: uid)
-            reference.addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    completion(false)
-                    return
-                }
-                self.donations = []
-                querySnapshot?.documents.forEach({ (documentSnapshot) in
-                    let dictionary = documentSnapshot.data()
-                    let donation = Donation(dictionary: dictionary)
-                    self.donationsDictionary[donation.id ?? ""] = donation
-                })
-                self.sortDonationsByTimestamp(completion: completion)
+            self.fetchUserDonations(user: user, completion: completion)
+        }
+    }
+    
+    
+    fileprivate func fetchAllDonations(completion: @escaping (Bool) -> ()) {
+        let reference = Firestore.firestore().collection("donations")
+        reference.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(false)
+                return
             }
+            self.donations = []
+            querySnapshot?.documents.forEach({ (documentSnapshot) in
+                let dictionary = documentSnapshot.data()
+                let donation = Donation(dictionary: dictionary)
+                self.donationsDictionary[donation.id ?? ""] = donation
+            })
+            self.sortDonationsByTimestamp(completion: completion)
+        }
+    }
+    
+    
+    fileprivate func fetchUserDonations(user: User, completion: @escaping (Bool) -> ()) {
+        let uid = user.uid ?? ""
+        let reference = Firestore.firestore().collection("donations").whereField("uid", isEqualTo: uid)
+        reference.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(false)
+                return
+            }
+            self.donations = []
+            querySnapshot?.documents.forEach({ (documentSnapshot) in
+                let dictionary = documentSnapshot.data()
+                let donation = Donation(dictionary: dictionary)
+                self.donationsDictionary[donation.id ?? ""] = donation
+            })
+            self.sortDonationsByTimestamp(completion: completion)
         }
     }
     
