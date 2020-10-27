@@ -6,16 +6,16 @@ class LoginVC: UIViewController {
     fileprivate let loginViewModel = LoginVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: "Enter email", radius: 25)
-    fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: "Enter password", radius: 25)
-    fileprivate let loginButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
-    fileprivate let goToSignupButton = SHButton(backgroundColor: .clear, title: "Go to Signup", titleColor: .white, radius: 0, fontSize: 18)
+    fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: Strings.enterEmail, radius: 25)
+    fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: Strings.enterPassword, radius: 25)
+    fileprivate let loginButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.login, titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let goToSignupButton = SHButton(backgroundColor: .clear, title: Strings.goToSignup, titleColor: .white, radius: 0, fontSize: 18)
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 16
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -59,13 +59,13 @@ extension LoginVC {
     
     
     @objc fileprivate func handleLogin() {
-        loginViewModel.performLogin { [weak self] error in
+        loginViewModel.performLogin { [weak self] status, message in
             guard let self = self else { return }
-            if let error = error {
-                self.presentAlert(title: "Login Failed!", message: error.localizedDescription, buttonTitle: "OK")
-                return
+            if status {
+                self.navigateToHome()
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
-            self.navigateToHome()
         }
     }
     
@@ -158,9 +158,10 @@ extension LoginVC {
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginButton.isEnabled = false
         
+        let padding: CGFloat = 24
         view.addSubview(verticalStackView)
         verticalStackView.centerInSuperview()
-        verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0,left: 50, bottom: 0, right: 50))
+        verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0,left: padding, bottom: 0, right: padding))
         
         view.addSubview(goToSignupButton)
         goToSignupButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing:view.trailingAnchor)
