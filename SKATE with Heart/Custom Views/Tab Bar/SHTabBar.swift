@@ -16,14 +16,14 @@ extension SHTabBar {
     
     fileprivate func createDonationNC() -> UINavigationController {
         let createDonationVC = CreateDonationVC()
-        createDonationVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "donate"), tag: 0)
+        createDonationVC.tabBarItem = UITabBarItem(title: "", image: Asserts.donate, tag: 0)
         return UINavigationController(rootViewController: createDonationVC)
     }
     
     
     fileprivate func donationListNC() -> UINavigationController {
         let donationListVC = DonationListVC()
-        donationListVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "skate"), tag: 1)
+        donationListVC.tabBarItem = UITabBarItem(title: "", image: Asserts.skate, tag: 1)
         return UINavigationController(rootViewController: donationListVC)
     }
 }

@@ -1,4 +1,10 @@
-import Foundation
+import UIKit
+
+struct Asserts {
+    static let donate = UIImage(named: "donate")!
+    static let skate = UIImage(named: "skate")!
+}
+
 
 struct Strings {
     
