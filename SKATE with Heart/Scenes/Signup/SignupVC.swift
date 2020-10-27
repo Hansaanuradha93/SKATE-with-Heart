@@ -6,17 +6,17 @@ class SignupVC: UIViewController {
     fileprivate let signupViewModel = SignUpVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
-    fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: "Enter email", radius: 25)
-    fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: "Enter password", radius: 25)
-    fileprivate let signupButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Sign Up", titleColor: .gray, radius: 25, fontSize: 24)
-    fileprivate let goToLoginButton = SHButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
+    fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: Strings.enterFullName, radius: 25)
+    fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: Strings.enterEmail, radius: 25)
+    fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: Strings.enterPassword, radius: 25)
+    fileprivate let signupButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.signup, titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let goToLoginButton = SHButton(backgroundColor: .clear, title: Strings.goToLogin, titleColor: .white, radius: 0, fontSize: 18)
 
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 16
+        stackView.spacing = 20
         return stackView
     }()
 
@@ -62,13 +62,13 @@ extension SignupVC {
     
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
-        signupViewModel.performSignUp { [weak self] error in
+        signupViewModel.performSignUp { [weak self] status, message in
             guard let self = self else { return }
-            if let error = error {
-                self.presentAlert(title: "Signup Failed!", message: error.localizedDescription, buttonTitle: "OK")
-                return
+            if status {
+                self.navigateToHome()
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
-            self.navigateToHome()
         }
     }
     
@@ -160,9 +160,10 @@ extension SignupVC {
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         signupButton.isEnabled = false
         
+        let padding: CGFloat = 24
         view.addSubview(verticalStackView)
         verticalStackView.centerInSuperview()
-        verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0,left: 50, bottom: 0, right: 50))
+        verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0,left: padding, bottom: 0, right: padding))
         
         view.addSubview(goToLoginButton)
         goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing:view.trailingAnchor)

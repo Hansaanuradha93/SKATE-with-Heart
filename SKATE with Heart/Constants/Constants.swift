@@ -21,10 +21,19 @@ struct Strings {
     static let yourName = "Your name"
     static let whatAreYouDonating = "What are you donating"
     static let pickupLocation = "Pickup location"
+    static let enterFullName = "Enter full name"
+    static let enterEmail = "Enter email"
+    static let enterPassword = "Enter password"
     
     // View Models
     static let donationPickedUpSuceessfully = "Donation Picked Up Successfully"
+    static let authenticationSuccessfull = "Authentication successfull"
+    static let loginSuccessfully = "Logged in successfully"
     
     // Buttons
     static let saveDonation = "Save Donation"
+    static let signup = "Sign Up"
+    static let goToLogin = "Go to login"
+    static let login = "Login"
+    static let goToSignup = "Go to Signup"
 }
