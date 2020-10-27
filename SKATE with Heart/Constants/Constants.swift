@@ -7,7 +7,6 @@ struct Asserts {
 
 
 struct Strings {
-    
     // Titles
     static let donationList = "Donation List"
     static let createDonation = "Create Donation"
