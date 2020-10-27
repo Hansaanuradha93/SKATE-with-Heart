@@ -17,18 +17,19 @@ class LoginVM {
 // MARK: - Methods
 extension LoginVM {
     
-    func performLogin(completion: @escaping (Error?) -> ()) {
+    func performLogin(completion: @escaping (Bool, String) -> ()) {
         guard let email = email, let password = password else { return }
         bindableIsLogin.value = true
+        
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] response, error in
             guard let self = self else { return }
             self.bindableIsLogin.value = false
             if let error = error {
-                completion(error)
+                print(error)
+                completion(false, error.localizedDescription)
                 return
             }
-            print("Logged in successfully")
-            completion(nil)
+            completion(true, Strings.loginSuccessfully)
         }
     }
     
