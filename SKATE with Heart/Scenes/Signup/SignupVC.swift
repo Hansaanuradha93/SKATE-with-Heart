@@ -6,17 +6,17 @@ class SignupVC: UIViewController {
     fileprivate let viewModel = SignUpVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: Strings.enterFullName, radius: 25)
-    fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: Strings.enterEmail, radius: 25)
-    fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: Strings.enterPassword, radius: 25)
-    fileprivate let signupButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.signup, titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let fullNameTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.enterFullName, radius: GlobalDimensions.radius)
+    fileprivate let emailTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.enterEmail, radius: GlobalDimensions.radius)
+    fileprivate let passwordTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.enterPassword, radius: GlobalDimensions.radius)
+    fileprivate let signupButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.signup, titleColor: .gray, radius: GlobalDimensions.radius, fontSize: GlobalDimensions.buttonTitleFontSize)
     fileprivate let goToLoginButton = SHButton(backgroundColor: .clear, title: Strings.goToLogin, titleColor: .white, radius: 0, fontSize: 18)
 
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 20
+        stackView.spacing = GlobalDimensions.paddingBetweenItems
         return stackView
     }()
 
@@ -157,7 +157,7 @@ extension SignupVC {
         fullNameTextField.autocorrectionType = .no
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
-        signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        signupButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
         signupButton.isEnabled = false
         
         let padding: CGFloat = 24
