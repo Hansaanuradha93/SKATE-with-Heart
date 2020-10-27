@@ -5,16 +5,16 @@ class CreateDonationVC: UIViewController {
     // MARK: Properties
     fileprivate let viewModel = CreateDonationVM()
     
-    fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: Strings.yourName, radius: 25)
-    fileprivate let donationTextField = SHTextField(padding: 16, placeholderText: Strings.whatAreYouDonating, radius: 25)
-    fileprivate let pickupLocationTextField = SHTextField(padding: 16, placeholderText: Strings.pickupLocation, radius: 25)
-    fileprivate let saveDonationButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.saveDonation, titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let fullNameTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.yourName, radius: GlobalDimensions.radius)
+    fileprivate let donationTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.whatAreYouDonating, radius: GlobalDimensions.radius)
+    fileprivate let pickupLocationTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.pickupLocation, radius: GlobalDimensions.radius)
+    fileprivate let saveDonationButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.saveDonation, titleColor: .gray, radius: GlobalDimensions.radius, fontSize: GlobalDimensions.buttonTitleFontSize)
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, donationTextField, pickupLocationTextField, saveDonationButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 20
+        stackView.spacing = GlobalDimensions.paddingBetweenItems
         return stackView
     }()
 
@@ -135,11 +135,11 @@ extension CreateDonationVC {
         donationTextField.autocorrectionType = .no
         pickupLocationTextField.autocorrectionType = .no
         
-        fullNameTextField.setRoundedBorder(borderColor: UIColor.appColor(color: .darkPink), borderWidth: 0.5, radius: 25)
-        donationTextField.setRoundedBorder(borderColor: UIColor.appColor(color: .darkPink), borderWidth: 0.5, radius: 25)
-        pickupLocationTextField.setRoundedBorder(borderColor: UIColor.appColor(color: .darkPink), borderWidth: 0.5, radius: 25)
+        fullNameTextField.setRoundedBorder(borderColor: UIColor.appColor(color: .darkPink), borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.radius)
+        donationTextField.setRoundedBorder(borderColor: UIColor.appColor(color: .darkPink), borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.radius)
+        pickupLocationTextField.setRoundedBorder(borderColor: UIColor.appColor(color: .darkPink), borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.radius)
 
-        saveDonationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        saveDonationButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
         saveDonationButton.isEnabled = false
         
         let padding: CGFloat = 24
