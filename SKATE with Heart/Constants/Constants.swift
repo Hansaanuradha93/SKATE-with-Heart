@@ -46,7 +46,6 @@ struct Strings {
 
 
 struct GlobalDimensions {
-    
     static let height: CGFloat = 50
     static let radius: CGFloat = 25
     static let buttonTitleFontSize: CGFloat = 24
