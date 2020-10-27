@@ -14,7 +14,7 @@ class CreateDonationVC: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, donationTextField, pickupLocationTextField, saveDonationButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 24
+        stackView.spacing = 20
         return stackView
     }()
 
@@ -142,8 +142,9 @@ extension CreateDonationVC {
         saveDonationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         saveDonationButton.isEnabled = false
         
+        let padding: CGFloat = 24
         view.addSubview(verticalStackView)
         verticalStackView.centerHorizontallyInSuperView()
-        verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 40, left: 12, bottom: 0, right: 12))
+        verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 40, left: padding, bottom: 0, right: padding))
     }
 }
