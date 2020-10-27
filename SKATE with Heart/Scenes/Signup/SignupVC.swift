@@ -3,7 +3,7 @@ import UIKit
 class SignupVC: UIViewController {
     
     // MARK: Properties
-    fileprivate let signupViewModel = SignUpVM()
+    fileprivate let viewModel = SignUpVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: Strings.enterFullName, radius: 25)
@@ -54,15 +54,15 @@ extension SignupVC {
     
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        signupViewModel.fullName = fullNameTextField.text
-        signupViewModel.email = emailTextField.text
-        signupViewModel.password = passwordTextField.text
+        viewModel.fullName = fullNameTextField.text
+        viewModel.email = emailTextField.text
+        viewModel.password = passwordTextField.text
     }
     
     
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
-        signupViewModel.performSignUp { [weak self] status, message in
+        viewModel.performSignUp { [weak self] status, message in
             guard let self = self else { return }
             if status {
                 self.navigateToHome()
@@ -111,7 +111,7 @@ extension SignupVC {
     
     
     fileprivate func setupRegistrationViewModelObserver() {
-        signupViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+        viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
                 self.signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
@@ -123,7 +123,7 @@ extension SignupVC {
             self.signupButton.isEnabled = isFormValid
         }
         
-        signupViewModel.bindableIsRegistering.bind { [weak self] isRegistering in
+        viewModel.bindableIsRegistering.bind { [weak self] isRegistering in
             guard let self = self, let isRegistering = isRegistering else { return }
             if isRegistering {
                 self.showPreloader()

@@ -3,7 +3,7 @@ import UIKit
 class LoginVC: UIViewController {
 
     // MARK: Properties
-    fileprivate let loginViewModel = LoginVM()
+    fileprivate let viewModel = LoginVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: Strings.enterEmail, radius: 25)
@@ -53,13 +53,13 @@ extension LoginVC {
     
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        loginViewModel.email = emailTextField.text
-        loginViewModel.password = passwordTextField.text
+        viewModel.email = emailTextField.text
+        viewModel.password = passwordTextField.text
     }
     
     
     @objc fileprivate func handleLogin() {
-        loginViewModel.performLogin { [weak self] status, message in
+        viewModel.performLogin { [weak self] status, message in
             guard let self = self else { return }
             if status {
                 self.navigateToHome()
@@ -111,7 +111,7 @@ extension LoginVC {
     
     
     fileprivate func setupLoginViewModelObserver() {
-        loginViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+        viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
                 self.loginButton.backgroundColor = UIColor.appColor(color: .darkPink)
@@ -123,7 +123,7 @@ extension LoginVC {
             self.loginButton.isEnabled = isFormValid
         }
         
-        loginViewModel.bindableIsLogin.bind { [weak self] isLogin in
+        viewModel.bindableIsLogin.bind { [weak self] isLogin in
             guard let self = self, let isLogin = isLogin else { return }
             if isLogin {
                 self.showPreloader()

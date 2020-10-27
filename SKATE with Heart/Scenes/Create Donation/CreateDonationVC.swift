@@ -3,7 +3,7 @@ import UIKit
 class CreateDonationVC: UIViewController {
     
     // MARK: Properties
-    fileprivate let createDonationViewModel = CreateDonationVM()
+    fileprivate let viewModel = CreateDonationVM()
     
     fileprivate let fullNameTextField = SHTextField(padding: 16, placeholderText: Strings.yourName, radius: 25)
     fileprivate let donationTextField = SHTextField(padding: 16, placeholderText: Strings.whatAreYouDonating, radius: 25)
@@ -45,9 +45,9 @@ extension CreateDonationVC {
     
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        createDonationViewModel.fullName = fullNameTextField.text
-        createDonationViewModel.donation = donationTextField.text
-        createDonationViewModel.pickupLocation = pickupLocationTextField.text
+        viewModel.fullName = fullNameTextField.text
+        viewModel.donation = donationTextField.text
+        viewModel.pickupLocation = pickupLocationTextField.text
     }
     
     
@@ -64,7 +64,7 @@ extension CreateDonationVC {
     
     
     @objc fileprivate func handleDonation() {
-        createDonationViewModel.saveDonationInfo { [weak self] status, message in
+        viewModel.saveDonationInfo { [weak self] status, message in
             guard let self = self else { return }
             if status {
                 self.presentAlert(title: Strings.successful, message: message, buttonTitle: Strings.ok)
@@ -94,7 +94,7 @@ extension CreateDonationVC {
     
     
     fileprivate func setupDonationViewModelObserver() {
-        createDonationViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+        viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
                 self.saveDonationButton.backgroundColor = UIColor.appColor(color: .darkPink)
@@ -106,7 +106,7 @@ extension CreateDonationVC {
             self.saveDonationButton.isEnabled = isFormValid
         }
         
-        createDonationViewModel.bindableIsSaving.bind { [weak self] isSaving in
+        viewModel.bindableIsSaving.bind { [weak self] isSaving in
             guard let self = self, let isSaving = isSaving else { return }
             if isSaving {
                 self.showPreloader()
