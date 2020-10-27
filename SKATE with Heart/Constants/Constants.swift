@@ -43,3 +43,14 @@ struct Strings {
     static let login = "Login"
     static let goToSignup = "Go to Signup"
 }
+
+
+struct GlobalDimensions {
+    
+    static let height: CGFloat = 50
+    static let radius: CGFloat = 25
+    static let buttonTitleFontSize: CGFloat = 24
+    static let textFieldPadding: CGFloat = 16
+    static let paddingBetweenItems: CGFloat = 20
+    static let borderWidth: CGFloat = 0.5
+}

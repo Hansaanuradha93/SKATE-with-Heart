@@ -6,16 +6,16 @@ class LoginVC: UIViewController {
     fileprivate let viewModel = LoginVM()
 
     fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let emailTextField = SHTextField(padding: 16, placeholderText: Strings.enterEmail, radius: 25)
-    fileprivate let passwordTextField = SHTextField(padding: 16, placeholderText: Strings.enterPassword, radius: 25)
-    fileprivate let loginButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.login, titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let emailTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.enterEmail, radius: GlobalDimensions.radius)
+    fileprivate let passwordTextField = SHTextField(padding: GlobalDimensions.textFieldPadding, placeholderText: Strings.enterPassword, radius: GlobalDimensions.radius)
+    fileprivate let loginButton = SHButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.login, titleColor: .gray, radius: GlobalDimensions.radius, fontSize: GlobalDimensions.buttonTitleFontSize)
     fileprivate let goToSignupButton = SHButton(backgroundColor: .clear, title: Strings.goToSignup, titleColor: .white, radius: 0, fontSize: 18)
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 20
+        stackView.spacing = GlobalDimensions.paddingBetweenItems
         return stackView
     }()
     
@@ -155,15 +155,15 @@ extension LoginVC {
         
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
-        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
         loginButton.isEnabled = false
         
         let padding: CGFloat = 24
         view.addSubview(verticalStackView)
         verticalStackView.centerInSuperview()
-        verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0,left: padding, bottom: 0, right: padding))
+        verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: padding, bottom: 0, right: padding))
         
         view.addSubview(goToSignupButton)
-        goToSignupButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing:view.trailingAnchor)
+        goToSignupButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
