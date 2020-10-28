@@ -15,7 +15,7 @@ class CreateDonationVM {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension CreateDonationVM {
     
     func saveDonationInfo(completion: @escaping (Bool, String) -> ()) {
@@ -45,7 +45,11 @@ extension CreateDonationVM {
             completion(true, Strings.donationSavedSuccessful)
         }
     }
-    
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension CreateDonationVM {
     
     func checkFormValidity() {
         let isFormValid = fullName?.isEmpty == false && donation?.isEmpty == false && pickupLocation?.isEmpty == false
