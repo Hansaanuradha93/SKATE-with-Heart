@@ -10,6 +10,19 @@ extension UIViewController {
     }
     
     
+    func presentAlertAction(title: String, message: String, rightButtonTitle: String, leftButtonTitle: String, rightButtonAction: ((_ alertAction: UIAlertAction) -> Void)? = nil, leftButtonAction: ((_ alertAction: UIAlertAction) -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let rightAction = UIAlertAction(title: rightButtonTitle, style: .default, handler: rightButtonAction)
+        let leftAction = UIAlertAction(title: leftButtonTitle, style: .cancel, handler: leftButtonAction)
+        
+        alertController.addAction(rightAction)
+        alertController.addAction(leftAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
     func showPreloader() {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .black
