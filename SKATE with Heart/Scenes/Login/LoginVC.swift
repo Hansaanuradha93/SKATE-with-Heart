@@ -45,20 +45,20 @@ class LoginVC: UIViewController {
 
 
 // MARK: - Objc Methods
-extension LoginVC {
+fileprivate extension LoginVC {
     
-    @objc fileprivate func handleTapDismiss() {
+    @objc func handleTapDismiss() {
         view.endEditing(true)
     }
     
     
-    @objc fileprivate func handleTextChange(textField: UITextField) {
+    @objc func handleTextChange(textField: UITextField) {
         viewModel.email = emailTextField.text
         viewModel.password = passwordTextField.text
     }
     
     
-    @objc fileprivate func handleLogin() {
+    @objc func handleLogin() {
         viewModel.performLogin { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -70,21 +70,21 @@ extension LoginVC {
     }
     
     
-    @objc fileprivate func handleGoToSignup() {
+    @objc func handleGoToSignup() {
         let controller = SignupVC()
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }
     
     
-    @objc fileprivate func handleKeyboardHide() {
+    @objc func handleKeyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.transform = .identity
         })
     }
     
     
-    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+    @objc func handleKeyboardShow(notification: Notification) {
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
         let bottomSpace = view.frame.height - verticalStackView.frame.origin.y - verticalStackView.frame.height
@@ -94,23 +94,23 @@ extension LoginVC {
 }
 
 
-// MARK: - Methods
-extension LoginVC {
+// MARK: - Fileprivate Methods
+fileprivate extension LoginVC {
     
-    fileprivate func setupNotifications() {
+    func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
-    fileprivate func navigateToHome() {
+    func navigateToHome() {
         let controller = SHTabBar()
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }
     
     
-    fileprivate func setupLoginViewModelObserver() {
+    func setupLoginViewModelObserver() {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
@@ -134,14 +134,14 @@ extension LoginVC {
     }
     
     
-    fileprivate func setupGradient() {
+    func setupGradient() {
         gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
         gradientLayer.locations = [0, 1]
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     
-    fileprivate func addTargets() {
+    func addTargets() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -150,7 +150,7 @@ extension LoginVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.isHidden = true
         
         emailTextField.keyboardType = .emailAddress
