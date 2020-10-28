@@ -14,7 +14,7 @@ class LoginVM {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension LoginVM {
     
     func performLogin(completion: @escaping (Bool, String) -> ()) {
@@ -32,7 +32,11 @@ extension LoginVM {
             completion(true, Strings.loginSuccessfully)
         }
     }
-    
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension LoginVM {
     
     func checkFormValidity() {
         let isFormValid = email?.isEmpty == false && password?.isEmpty == false && password?.count ?? 0 >= 6
