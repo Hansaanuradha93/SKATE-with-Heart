@@ -51,19 +51,10 @@ extension DonationListVC {
     }
     
     
-    fileprivate func addAlert(donation: Donation?) {
-        let alertController = UIAlertController(title: Strings.areYouSure, message: Strings.didYouPickupTheDonation, preferredStyle: .alert)
-
-        let okAction = UIAlertAction(title: Strings.yes, style: UIAlertAction.Style.default) {
-            UIAlertAction in
+    fileprivate func displayAlert(donation: Donation?) {
+        self.presentAlertAction(title: Strings.areYouSure, message: Strings.didYouPickupTheDonation, rightButtonTitle: Strings.yes, leftButtonTitle: Strings.no, rightButtonAction:  { (_) in
             self.updatePickupState(donation: donation)
-        }
-        let cancelAction = UIAlertAction(title: Strings.no, style: UIAlertAction.Style.cancel, handler: nil)
-
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-
-        self.present(alertController, animated: true, completion: nil)
+        })
     }
     
     
@@ -96,6 +87,6 @@ extension DonationListVC: UICollectionViewDataSource {
 extension DonationListVC: DonationCellDelegate {
     
     func pickUpButtonTapped(donation: Donation?) {
-       addAlert(donation: donation)
+        displayAlert(donation: donation)
     }
 }
