@@ -37,33 +37,33 @@ class CreateDonationVC: UIViewController {
 
 
 // MARK: - Objc Methods
-extension CreateDonationVC {
+fileprivate extension CreateDonationVC {
     
-    @objc fileprivate func handleTapDismiss() {
+    @objc func handleTapDismiss() {
         view.endEditing(true)
     }
     
     
-    @objc fileprivate func handleTextChange(textField: UITextField) {
+    @objc func handleTextChange(textField: UITextField) {
         viewModel.fullName = fullNameTextField.text
         viewModel.donation = donationTextField.text
         viewModel.pickupLocation = pickupLocationTextField.text
     }
     
     
-    @objc fileprivate func handleKeyboardHide() {
+    @objc func handleKeyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.verticalStackView.transform = .identity
         })
     }
     
     
-    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+    @objc func handleKeyboardShow(notification: Notification) {
         self.verticalStackView.transform = CGAffineTransform(translationX: 0, y: -20)
     }
     
     
-    @objc fileprivate func handleDonation() {
+    @objc func handleDonation() {
         viewModel.saveDonationInfo { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -77,23 +77,23 @@ extension CreateDonationVC {
 }
 
 
-// MARK: - Methods
-extension CreateDonationVC {
+// MARK: - Fileprivate Methods
+fileprivate extension CreateDonationVC {
     
-    fileprivate func clearData() {
+    func clearData() {
         fullNameTextField.text = ""
         donationTextField.text = ""
         pickupLocationTextField.text = ""
     }
     
     
-    fileprivate func setupNotifications() {
+    func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
-    fileprivate func setupDonationViewModelObserver() {
+    func setupDonationViewModelObserver() {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
@@ -117,7 +117,7 @@ extension CreateDonationVC {
     }
     
     
-    fileprivate func addTargets() {
+    func addTargets() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         donationTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -126,7 +126,7 @@ extension CreateDonationVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Strings.createDonation
         view.backgroundColor = .white
