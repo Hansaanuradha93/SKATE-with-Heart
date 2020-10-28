@@ -9,7 +9,7 @@ class DonationListVM {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension DonationListVM {
     
     func pickupDonation(donation: Donation?, completion: @escaping (Bool, String) -> ()) {
@@ -43,9 +43,13 @@ extension DonationListVM {
             }
         }
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension DonationListVM {
     
-    
-    fileprivate func fetchDonations(user: User, completion: @escaping (Bool) -> ()) {
+    func fetchDonations(user: User, completion: @escaping (Bool) -> ()) {
         if user.isAdminUser {
             self.fetchAllDonations(completion: completion)
         } else {
@@ -54,7 +58,7 @@ extension DonationListVM {
     }
     
     
-    fileprivate func fetchAllDonations(completion: @escaping (Bool) -> ()) {
+    func fetchAllDonations(completion: @escaping (Bool) -> ()) {
         let reference = Firestore.firestore().collection("donations")
         reference.addSnapshotListener { querySnapshot, error in
             if let error = error {
@@ -73,7 +77,7 @@ extension DonationListVM {
     }
     
     
-    fileprivate func fetchUserDonations(user: User, completion: @escaping (Bool) -> ()) {
+    func fetchUserDonations(user: User, completion: @escaping (Bool) -> ()) {
         let uid = user.uid ?? ""
         let reference = Firestore.firestore().collection("donations").whereField("uid", isEqualTo: uid)
         reference.addSnapshotListener { querySnapshot, error in
@@ -93,7 +97,7 @@ extension DonationListVM {
     }
     
     
-    fileprivate func sortDonationsByTimestamp(completion: @escaping (Bool) -> ()) {
+    func sortDonationsByTimestamp(completion: @escaping (Bool) -> ()) {
         let values = Array(donationsDictionary.values)
         donations = values.sorted(by: { (donation1, donation2) -> Bool in
             guard let timestamp1 = donation1.timestamp, let timestamp2 = donation2.timestamp else { return false }
