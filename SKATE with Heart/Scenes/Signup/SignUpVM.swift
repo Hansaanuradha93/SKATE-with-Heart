@@ -15,7 +15,7 @@ class SignUpVM {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension SignUpVM {
     
     func performSignUp(completion: @escaping (Bool, String) -> ()) {
@@ -33,9 +33,13 @@ extension SignUpVM {
             self.saveInfoToFirestore(completion: completion)
         }
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension SignUpVM {
     
-    
-    fileprivate func saveInfoToFirestore(completion: @escaping (Bool, String) -> ()) {
+    func saveInfoToFirestore(completion: @escaping (Bool, String) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let userInfo = [
             "uid": uid,
